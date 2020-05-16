@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
   footer: {
     color: Colors.dark,
     fontSize: 12,
-    fontWeight: '600',
+    fontWeight: '500',
     padding: 4,
     paddingRight: 12,
     textAlign: 'right',
