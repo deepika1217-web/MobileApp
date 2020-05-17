@@ -27,28 +27,17 @@ import {
 import axios from 'axios';
 
 class App extends React.Component {
-//   const styles = StyleSheet.create({
-//   	container: {
-//   		flex: 1,
-//   		justifyContent: 'center',
-//   		alignItems: 'center',
-//   		backgroundColor: '#F5FCFF'
-//   	},
-//   	instructions: {
-//   		textAlign: 'center',
-//   		color: '#333333',
-//   		marginBottom: 5
-//   	}
-//   	});
 
    state = {
       responseData: ''
    }
    componentDidMount = () => {
-      fetch('https://api.github.com/users/deepika1217-web', {
+      //  fetch(`https://api.github.com/users/deepika1217-web`, {
+      fetch('https://api.github.com/repos/deepika1217-web/MobileApp/branches', {
          method: 'GET'
       })
-      .then((response) => response.json()) .then((responseJson) => {
+      .then((response) => response.json())
+      .then((responseJson) => {
          this.setState({
             responseData: responseJson
          })
@@ -58,13 +47,26 @@ class App extends React.Component {
    }
    render() {
       return (
-             <View>
-               <Text>
-                  {this.state.responseData.login}
-                   {this.state.responseData.id}
+             <View style={styles.container}>
+               <Text style={styles.instructions}>
+                  {this.state.responseData}
             </Text>
          </View>
       )
    }
+
 }
+   const styles = StyleSheet.create({
+       container: {
+         flex: 1,
+         justifyContent: 'center',
+         alignItems: 'center',
+         backgroundColor: '#F5FCFF'
+       },
+         instructions: {
+         textAlign: 'center',
+         color: '#333333',
+         marginBottom: 5
+       }
+   });
 export default App;
