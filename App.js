@@ -36,8 +36,7 @@ class App extends React.Component {
       fetch('https://api.github.com/repos/deepika1217-web/MobileApp/branches', {
          method: 'GET'
       })
-      .then((response) => response.json())
-      .then((responseJson) => {
+      .then((response) => response.json()) .then((responseJson) => {
          this.setState({
             responseData: responseJson
          })
@@ -46,15 +45,15 @@ class App extends React.Component {
       });
    }
    render() {
+   const res = this.state.responseData;
       return (
              <View style={styles.container}>
-               <Text style={styles.instructions}>
-                  {this.state.responseData}
-            </Text>
+                <Text style={styles.instructions}>
+                  {JSON.stringify(res)}
+                </Text>
          </View>
       )
    }
-
 }
    const styles = StyleSheet.create({
        container: {
@@ -67,6 +66,10 @@ class App extends React.Component {
          textAlign: 'center',
          color: '#333333',
          marginBottom: 5
-       }
+       },
+       TextStyle: {
+          fontSize : 25,
+           textAlign: 'center'
+        }
    });
 export default App;
