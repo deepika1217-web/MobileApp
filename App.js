@@ -31,14 +31,25 @@ class App extends React.Component {
    state = {
       responseData: ''
    }
+
+
+//   https://api.github.com/repos/deepika1217-web/MobileApp/commits?per_page=100&sha=ae202b3bf655fd7fc666a654c19af5d1b1cb4aa5
    componentDidMount = () => {
       //  fetch(`https://api.github.com/users/deepika1217-web`, {
-      fetch('https://api.github.com/repos/deepika1217-web/MobileApp/branches', {
+      fetch('https://api.github.com/repos/deepika1217-web/MobileApp/commits?per_page=100&sha=ae202b3bf655fd7fc666a654c19af5d1b1cb4aa5', {
          method: 'GET'
-      })
-      .then((response) => response.json()) .then((responseJson) => {
+      }).then(response => response.json()) 
+      .then((responseJson) => {
+         const resArray = [];
+         for (const key in responseJson) {
+            resArray.push({
+             //  responseJson[key]
+               login: responseJson[key].committer.login,
+               url: responseJson[key].committer.url
+            });
+         }
          this.setState({
-            responseData: responseJson
+            responseData: resArray
          })
       }).catch((error) => {
          console.error(error);
